@@ -380,12 +380,25 @@ class Plugin
     {
         // Mobile detection
         if (!function_exists('wp_is_mobile')) {
-            require_once ABSPATH . WPINC . '/class-wp-session-tokens.php';
+            require_once ABSPATH . WPINC . '/functions.php';
         }
         
         // Browser detection for advanced features
         if (!class_exists('Browser')) {
-            require_once FLUENTCRM_VIDEO_THUMBNAILS_PATH . 'includes/vendor/browser.php';
+            if (file_exists(FLUENTCRM_VIDEO_THUMBNAILS_PATH . 'includes/vendor/browser.php')) {
+                require_once FLUENTCRM_VIDEO_THUMBNAILS_PATH . 'includes/vendor/browser.php';
+            } else {
+                // If the browser.php file doesn't exist, create a simple fallback
+                class Browser {
+                    public function supportsWebP() {
+                        return false; // Default to no WebP support
+                    }
+                    
+                    public function isMobile() {
+                        return wp_is_mobile();
+                    }
+                }
+            }
         }
         
         // Check for specific plugins and load compatibility modules

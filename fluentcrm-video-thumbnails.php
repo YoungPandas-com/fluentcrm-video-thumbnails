@@ -148,35 +148,55 @@ if (fluentcrm_video_thumbnails_requirements_met()) {
     
     // Activation hook
     register_activation_hook(__FILE__, function() {
-        // Create necessary directories with proper permissions
-        $upload_dir = wp_upload_dir();
-        $thumbnail_dir = $upload_dir['basedir'] . '/fluentcrm-video-thumbnails';
-        
-        if (!file_exists($thumbnail_dir)) {
-            wp_mkdir_p($thumbnail_dir);
-            
-            // Create .htaccess to protect directory
-            $htaccess_content = "# Disable directory browsing\n";
-            $htaccess_content .= "Options -Indexes\n";
-            $htaccess_content .= "# Protect .htaccess file\n";
-            $htaccess_content .= "<Files .htaccess>\n";
-            $htaccess_content .= "Order Allow,Deny\n";
-            $htaccess_content .= "Deny from all\n";
-            $htaccess_content .= "</Files>\n";
-            
-            file_put_contents($thumbnail_dir . '/.htaccess', $htaccess_content);
-        }
-        
-        // Add capabilities
-        if (current_user_can('manage_options')) {
-            $admin = get_role('administrator');
-            if ($admin) {
-                $admin->add_cap('manage_fluentcrm_video_thumbnails');
+        try {
+            // Create necessary directories with proper permissions
+            $upload_dir = wp_upload_dir();
+            if (isset($upload_dir['error']) && !empty($upload_dir['error'])) {
+                // Handle upload directory error
+                error_log('FluentCRM Video Thumbnails: Upload directory error - ' . $upload_dir['error']);
+                return;
             }
+            
+            $thumbnail_dir = $upload_dir['basedir'] . '/fluentcrm-video-thumbnails';
+            
+            if (!file_exists($thumbnail_dir)) {
+                $dir_created = wp_mkdir_p($thumbnail_dir);
+                
+                if (!$dir_created) {
+                    error_log('FluentCRM Video Thumbnails: Failed to create directory - ' . $thumbnail_dir);
+                    return;
+                }
+                
+                // Create index.php for security
+                @file_put_contents($thumbnail_dir . '/index.php', '<?php // Silence is golden');
+                
+                // Create .htaccess with less restrictive rules that are more compatible
+                $htaccess_content = "# Disable directory browsing\n";
+                $htaccess_content .= "Options -Indexes\n";
+                $htaccess_content .= "# Protect .htaccess file\n";
+                $htaccess_content .= "<Files .htaccess>\n";
+                $htaccess_content .= "Order Allow,Deny\n";
+                $htaccess_content .= "Deny from all\n";
+                $htaccess_content .= "</Files>\n";
+                
+                @file_put_contents($thumbnail_dir . '/.htaccess', $htaccess_content);
+            }
+            
+            // Add capabilities - only if user has manage_options capability
+            if (current_user_can('manage_options')) {
+                $admin = get_role('administrator');
+                if ($admin) {
+                    $admin->add_cap('manage_fluentcrm_video_thumbnails');
+                }
+            }
+            
+            // Set activation flag for admin notice
+            update_option('fluentcrm_video_thumbnails_activated', time());
+            
+        } catch (Exception $e) {
+            // Log activation errors
+            error_log('FluentCRM Video Thumbnails activation error: ' . $e->getMessage());
         }
-        
-        // Set activation flag for admin notice
-        update_option('fluentcrm_video_thumbnails_activated', time());
     });
     
     // Deactivation hook
