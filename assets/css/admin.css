@@ -1,0 +1,340 @@
+/* Video Thumbnail Generator Admin Styles */
+.fluentcrm-video-thumbnails-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.fluentcrm-video-thumbnails-container h1 {
+    margin-bottom: 20px;
+    color: #1e1e1e;
+    font-size: 24px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.fluentcrm-video-thumbnails-container h2 {
+    margin: 25px 0 15px;
+    font-size: 20px;
+    color: #444;
+}
+
+.fluentcrm-video-thumbnails-container h3 {
+    font-size: 16px;
+    margin: 15px 0 10px;
+    color: #666;
+}
+
+.source-selection {
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.video-input {
+    margin-bottom: 20px;
+}
+
+.external-url-input input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.external-url-input label,
+.media-library-input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.selected-video-info {
+    margin-top: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+.video-player {
+    margin-bottom: 20px;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.thumbnail-editor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+@media (max-width: 782px) {
+    .thumbnail-editor {
+        grid-template-columns: 1fr;
+    }
+}
+
+.thumbnail-preview {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editing-controls {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.save-action {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.error-message {
+    grid-column: 1 / -1;
+    color: #d94f4f;
+    background: #fde8e8;
+    border-left: 4px solid #d94f4f;
+    padding: 10px 15px;
+    margin-top: 15px;
+}
+
+.success-message {
+    grid-column: 1 / -1;
+    color: #4caf50;
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 10px 15px;
+    margin-top: 15px;
+}
+
+/* Thumbnails display */
+.thumbnails-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.thumbnail-option {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.thumbnail-option:hover {
+    border-color: #007cba;
+}
+
+.thumbnail-option.selected {
+    border-color: #007cba;
+    box-shadow: 0 0 0 1px #007cba;
+}
+
+.thumbnail-option img {
+    max-width: 150px;
+    display: block;
+}
+
+/* Timeframe selector */
+.timeframe-selector {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+/* Canvas and image editor */
+.canvas-container {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.canvas-container canvas {
+    max-width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* Tooltip styles */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+    cursor: help;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Animations */
+.thumbnail-preview img {
+    transition: all 0.3s ease;
+}
+
+.components-button {
+    transition: all 0.2s ease;
+}
+
+/* Image crop tool */
+.crop-container {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.crop-container img {
+    max-width: 100%;
+}
+
+.crop-controls {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    text-align: center;
+    padding: 20px;
+}
+
+.loading-indicator svg {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* YouTube timeframe selector */
+.youtube-timeframe-selector {
+    margin-top: 15px;
+}
+
+.youtube-timeframe-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.youtube-timeframe-option {
+    position: relative;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.youtube-timeframe-option:hover {
+    border-color: #007cba;
+}
+
+.youtube-timeframe-option.selected {
+    border-color: #007cba;
+}
+
+.youtube-timeframe-option img {
+    max-width: 120px;
+    display: block;
+}
+
+.youtube-timeframe-option .timestamp {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 10px;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+/* Accessibility enhancements */
+.components-button:focus {
+    box-shadow: 0 0 0 2px #007cba;
+}
+
+input:focus {
+    border-color: #007cba;
+    box-shadow: 0 0 0 1px #007cba;
+}
+
+/* Video frame capture slider */
+.video-time-slider {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.video-time-display {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Help text */
+.help-text {
+    font-size: 13px;
+    color: #666;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Quality indicator */
+.quality-indicator {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    margin-left: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.quality-indicator.hd {
+    background-color: #e8f5e9;
+    color: #4caf50;
+}
+
+.quality-indicator.sd {
+    background-color: #fff8e1;
+    color: #ff9800;
+}

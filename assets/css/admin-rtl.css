@@ -1,0 +1,78 @@
+/* RTL support for FluentCRM Video Thumbnail Generator */
+
+.fluentcrm-video-thumbnails-container h1 {
+    border-right: 4px solid #2271b1;
+    border-left: none;
+    padding-right: 15px;
+    padding-left: 0;
+}
+
+.error-message {
+    border-right: 4px solid #d94f4f;
+    border-left: none;
+    padding-right: 15px;
+    padding-left: 10px;
+}
+
+.success-message {
+    border-right: 4px solid #4caf50;
+    border-left: none;
+    padding-right: 15px;
+    padding-left: 10px;
+}
+
+.tooltip {
+    margin-right: 8px;
+    margin-left: 0;
+}
+
+.tooltip .tooltip-text {
+    right: 50%;
+    left: auto;
+    margin-right: -100px;
+    margin-left: 0;
+}
+
+.notification {
+    left: 20px;
+    right: auto;
+}
+
+.notification-success {
+    border-right: 4px solid #4caf50;
+    border-left: none;
+}
+
+.notification-error {
+    border-right: 4px solid #d94f4f;
+    border-left: none;
+}
+
+.notification-info {
+    border-right: 4px solid #2196f3;
+    border-left: none;
+}
+
+.tip-icon {
+    margin-right: 8px;
+    margin-left: 0;
+}
+
+.youtube-timeframe-option .timestamp {
+    right: 0;
+    left: 0;
+}
+
+.url-loading-indicator {
+    left: 10px;
+    right: auto;
+}
+
+.quality-indicator {
+    margin-right: 10px;
+    margin-left: 0;
+}
+
+.thumbnail-metadata {
+    text-align: right;
+}
